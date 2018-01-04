@@ -122,7 +122,7 @@ def combine_origin_mask(img,mask_lane,ploty,left_fitx,right_fitx):
     
     return result
 ```
-![combine_mask][images/combine_mask.jpeg]
+![combine](images/combine.jpeg)
 
 ---
 
