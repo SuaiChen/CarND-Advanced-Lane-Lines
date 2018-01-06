@@ -101,8 +101,24 @@ def window_center(mask_img,nrows = 15,threshold =50):
   Here's an example of my output with `window_center()` and `draw_line()`. 
  ![line](images/line.jpeg)
 
+#### 5. How to calculate the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-#### 5. Example image of my result plotted back down onto the road such that the lane area is identified clearly.
+```python
+left_fit_cr = np.polyfit(left_center_list[:,1]*ym_per_pix,left_center_list[:,0]*xm_per_pix, 2)
+right_fit_cr = np.polyfit(right_center_list[:,1]*ym_per_pix,right_center_list[:,0]*xm_per_pix, 2)
+    
+left_curverad = ((1 + (2*left_fit_cr[0]*mask_img.shape[0]*ym_per_pix+left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])
+right_curverad = ((1 + (2*right_fit_cr[0]*mask_img.shape[0]*ym_per_pix+right_fit_cr[1])**2)**1.5) / np.absolute(2*right_fit_cr[0])
+    
+car_position = (mask_img.shape[1]/2)*xm_per_pix
+l_fit_x_int = left_fit_cr[0]*(mask_img.shape[0]*xm_per_pix)**2 + left_fit_cr[1]*(mask_img.shape[0]*xm_per_pix) + left_fit_cr[2]
+r_fit_x_int = right_fit_cr[0]*(mask_img.shape[0]*xm_per_pix)**2 + right_fit_cr[1]*(mask_img.shape[0]*xm_per_pix) + right_fit_cr[2]
+    lane_center_position = (r_fit_x_int + l_fit_x_int) /2
+    center_dist = (car_position - lane_center_position)
+```
+
+
+#### 6. Example image of my result plotted back down onto the road such that the lane area is identified clearly.
 
 Here is an example of my result on a test image:
 ```python
@@ -147,4 +163,4 @@ I tried Segnet to detect lanes. There are some useful websites.
 * [Segnet-github-tutorial](https://github.com/alexgkendall/SegNet-Tutorial)
 * [caffe-github-segnet](https://github.com/alexgkendall/caffe-segnet)
 * [Segnet-demo](http://mi.eng.cam.ac.uk/projects/segnet/#demo)
-![Segnet](images/segnet.jpeg)
+  ![Segnet](images/segnet.jpeg)
