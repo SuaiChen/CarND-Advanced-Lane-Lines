@@ -138,5 +138,13 @@ Here's a [link to my video result](./project_video_result.mp4)
 
 * Color detection only can detect very specific lanes. If colors are changed because of weather conditions or different light environment, This method will fail.
 * Gradient detection will meet problems when texture is very complex.
-* Segmentation will be a good function to detect lanes. Some deep learning methods(FCN, Segnet and so on) can detect lanes accurately. I will try......
+* Segmentation will be a good function to detect lanes. Some deep learning methods(FCN, Segnet and so on) can detect lanes relatively accurately. 
 
+
+#### Segnet Results
+I tried Segnet to detect lanes. There are some useful websites.
+* [Segnet-tutorial](http://mi.eng.cam.ac.uk/projects/segnet/tutorial.html)
+* [Segnet-github-tutorial](https://github.com/alexgkendall/SegNet-Tutorial)
+* [caffe-github-segnet](https://github.com/alexgkendall/caffe-segnet)
+* [Segnet-demo](http://mi.eng.cam.ac.uk/projects/segnet/#demo)
+![Segnet](images/segnet.jpeg)
